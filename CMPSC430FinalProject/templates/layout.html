@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>430 Final</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <header>
+    <h1>430 Final Project: Loan Management System</h1>
+    <nav>
+      <a href="{{ url_for('index') }}">Dashboard</a> |
+      <a href="{{ url_for('login') }}">Log In</a> |
+      <a href="{{ url_for('customers_route') }}">Customers</a> |
+      <a href="{{ url_for('studentloans_route') }}">Student Loans</a> |
+      <a href="{{ url_for('autoloans_route') }}">Auto Loans</a> |
+      <a href="{{ url_for('personalloans_route') }}">Personal Loans</a> |
+      <a href="{{ url_for('mortgageloans_route') }}">Mortgage Loans</a>
+    </nav>
+  </header>
+  <main>
+    {% block content %}
+    {% endblock %}
+  </main>
+</body>
+</html>

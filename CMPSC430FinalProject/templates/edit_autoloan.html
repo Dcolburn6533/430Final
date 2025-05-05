@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+{% block content %}
+<h2>Edit Auto Loan</h2>
+<form method="post" action="{{ url_for('edit_autoloan_route', loan_id=loan.loan_id) }}">
+  <label>VIN:</label><br>
+  <input type="text" name="VIN" value="{{ loan.vin }}" required><br>
+  <label>Make:</label><br>
+  <input type="text" name="make" value="{{ loan.make }}" required><br>
+  <label>Model:</label><br>
+  <input type="text" name="model" value="{{ loan.model }}" required><br>
+  <label>Years:</label><br>
+  <input type="text" name="years" value="{{ loan.years }}" required><br>
+  <label>Loan Amount:</label><br>
+  <input type="text" name="loan_amount" value="{{ loan.loan_amount }}" required><br>
+  <label>Interest Rate:</label><br>
+  <input type="text" name="interest_rate" value="{{ loan.interest_rate }}" required><br>
+  <label>Amount Paid:</label><br>
+  <input type="text" name="amount_paid" value="{{ loan.amount_paid }}" required><br>
+  <label>Number of Payments:</label><br>
+  <input type="text" name="number_of_payments" value="{{ loan.number_of_payments }}" required><br>
+  <label>End Date (YYYY-MM-DD):</label><br>
+  <input type="text" name="end_date" value="{{ loan.end_date }}" required><br>
+  <label>Select Customer:</label><br>
+  <select name="customer_id" required>
+    {% for customer in customers %}
+      <option value="{{ customer.customer_id }}" {% if customer.customer_id == loan.customer_id %}selected{% endif %}>{{ customer.firstname }} {{ customer.lastname }}</option>
+    {% endfor %}
+  </select><br>
+  <button type="submit">Update Auto Loan</button>
+</form>
+{% endblock %}

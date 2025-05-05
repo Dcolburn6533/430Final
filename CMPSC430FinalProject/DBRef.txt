@@ -1,0 +1,96 @@
+CREATE TABLE autoLoan(
+    loan_id NUMBER(10, 0),
+	VIN VARCHAR(17),
+    make VARCHAR(50),
+    model VARCHAR(50),
+    years NUMBER(4,0),
+    loan_amount INT,
+    interest_rate FLOAT,
+    amount_paid INT,
+    number_of_payments INT,
+    end_date DATE,
+    PRIMARY KEY(loan_id),
+	FOREIGN KEY(VIN) references vehicle
+);
+
+
+CREATE TABLE customer(
+	customer_id NUMBER(6,0), 
+	firstname VARCHAR(100),
+	lastname VARCHAR(100),
+	dob DATE,
+	house_address VARCHAR(100),
+	phone_number VARCHAR(11),
+	email VARCHAR(100),
+	PRIMARY KEY(customer_id)
+);
+
+CREATE TABLE house(
+	house_address VARCHAR(100),
+	house_area VARCHAR(100),
+	number_of_bedrooms INT,
+	house_price INT,
+	customer_id NUMBER(6,0),
+	PRIMARY KEY (house_address)
+	FOREIGN KEY (customer_id) REFERENCES customer(customer_id)
+	
+);
+
+CREATE TABLE mortgage(
+    mortgage_id NUMBER(8,0),
+    house_address VARCHAR(100),
+    start_date DATE,
+    loan_amount INT,
+    number_of_bedrooms INT,
+    house_area VARCHAR(100),
+    house_price INT,
+    interest_rate FLOAT,
+    amount_paid INT,
+    number_of_payments INT,
+    end_date DATE,
+    PRIMARY KEY (mortgage_id),
+    FOREIGN KEY (house_address) REFERENCES house(house_address)
+);
+
+
+CREATE TABLE vehicle(
+	 VIN VARCHAR(17),
+	 make VARCHAR(50),
+      model VARCHAR(50),
+      years NUMBER(4,0),
+      customer_id NUMBER(6,0),
+	 PRIMARY KEY (VIN),
+	 FOREIGN KEY (VIN) REFERENCES autoLoan(VIN)
+	 FOREIGN KEY (customer_id) REFERENCES customer(customer_id)
+);
+	 
+
+CREATE TABLE studentLoan(
+	loan_id NUMBER(10,0), 
+	disbursement_date DATE, 
+	repay_start_date DATE,
+	loan_type VARCHAR(50)
+	loan_term DATE,
+	repay_end_date DATE,
+	monthly_payment INT,
+	grace_period DATE,
+	customer_id NUMBER(6,0),
+	PRIMARY KEY(loan_id),
+     FOREIGN KEY (customer_id) REFERENCES customer(customer_id)
+);
+
+CREATE TABLE personalLoan(
+	loan_id NUMBER(10,0),
+	loan_purpose VARCHAR(100),
+	loan_amount INT,
+	start_date DATE,
+	interest_rate FLOAT,
+	amount_paid INT,
+	number_of_payments INT,
+	end_date DATE
+	customer_id NUMBER(6,0),
+	PRIMARY KEY (loan_id)
+	FOREIGN KEY (customer_id) REFERENCES customer(customer_id),
+	FOREIGN KEY (loan_id) REFERENCES studentLoan(loan_id)
+	
+);

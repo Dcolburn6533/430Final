@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+{% block content %}
+<h2>Add Auto Loan</h2>
+<form method="post" action="{{ url_for('add_autoloan_route') }}">
+  <label>VIN:</label><br>
+  <input type="text" name="VIN" required><br>
+  <label>Make:</label><br>
+  <input type="text" name="make" required><br>
+  <label>Model:</label><br>
+  <input type="text" name="model" required><br>
+  <label>Years:</label><br>
+  <input type="text" name="years" required><br>
+  <label>Loan Amount:</label><br>
+  <input type="text" name="loan_amount" required><br>
+  <label>Interest Rate:</label><br>
+  <input type="text" name="interest_rate" required><br>
+  <label>Amount Paid:</label><br>
+  <input type="text" name="amount_paid" required><br>
+  <label>Number of Payments:</label><br>
+  <input type="text" name="number_of_payments" required><br>
+  <label>End Date (YYYY-MM-DD):</label><br>
+  <input type="text" name="end_date" required><br>
+  <label>Select Customer:</label><br>
+  <select name="customer_id" required>
+    {% for customer in customers %}
+      <option value="{{ customer.customer_id }}">{{ customer.firstname }} {{ customer.lastname }}</option>
+    {% endfor %}
+  </select><br>
+  <button type="submit">Add Auto Loan</button>
+</form>
+{% endblock %}

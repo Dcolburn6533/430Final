@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+{% block content %}
+<h2>Add Customer</h2>
+<form method="post" action="{{ url_for('add_customer_route') }}">
+  <label>First Name:</label><br>
+  <input type="text" name="first_name" required><br>
+  <label>Last Name:</label><br>
+  <input type="text" name="last_name" required><br>
+  <label>Date of Birth (YYYY-MM-DD):</label><br>
+  <input type="text" name="dob" required><br>
+  <label>Address:</label><br>
+  <input type="text" name="address" required><br>
+  <label>Phone Number:</label><br>
+  <input type="text" name="phone_number" required><br>
+  <label>Email:</label><br>
+  <input type="email" name="email" required><br>
+  <button type="submit">Add Customer</button>
+</form>
+{% endblock %}

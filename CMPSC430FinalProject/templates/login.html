@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+{% block content %}
+<h2>Login</h2>
+<p>Select your name to log in and view your loans.</p>
+<form method="post" action="{{ url_for('login') }}">
+  <label for="customer_id">Select Customer:</label><br>
+  <select name="customer_id" id="customer_id" required>
+    {% for customer in customers %}
+      <option value="{{ customer.customer_id }}">{{ customer.firstname }} {{ customer.lastname }}</option>
+    {% endfor %}
+  </select><br><br>
+  <button type="submit">Log In</button>
+</form>
+{% endblock %}

@@ -1,0 +1,143 @@
+{% extends "layout.html" %}
+{% block content %}
+<h2>Customer Name: {{ customer.firstname }} {{ customer.lastname }}</h2>
+<p>Email: {{ customer.email }} | Phone: {{ customer.phone_number }}</p>
+
+<h3>Student Loans</h3>
+{% if student_loans %}
+  <table>
+    <thead>
+      <tr>
+        <th>Loan ID</th>
+        <th>Disbursement Date</th>
+        <th>Repay Start Date</th>
+        <th>Loan Type</th>
+        <th>Loan Term</th>
+        <th>Repay End Date</th>
+        <th>Monthly Payment</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for loan in student_loans %}
+      <tr>
+        <td>{{ loan.loan_id }}</td>
+        <td>{{ loan.disbursement_date }}</td>
+        <td>{{ loan.repay_start_date }}</td>
+        <td>{{ loan.loan_type }}</td>
+        <td>{{ loan.loan_term }}</td>
+        <td>{{ loan.repay_end_date }}</td>
+        <td>{{ loan.monthly_payment }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% else %}
+  <p>No student loans found.</p>
+{% endif %}
+
+<h3>Auto Loans</h3>
+{% if auto_loans %}
+  <table>
+    <thead>
+      <tr>
+        <th>Loan ID</th>
+        <th>VIN</th>
+        <th>Make</th>
+        <th>Model</th>
+        <th>Years</th>
+        <th>Loan Amount</th>
+        <th>Interest Rate</th>
+        <th>Amount Paid</th>
+        <th>Number of Payments</th>
+        <th>End Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for loan in auto_loans %}
+      <tr>
+        <td>{{ loan.loan_id }}</td>
+        <td>{{ loan.vin }}</td>
+        <td>{{ loan.make }}</td>
+        <td>{{ loan.model }}</td>
+        <td>{{ loan.years }}</td>
+        <td>{{ loan.loan_amount }}</td>
+        <td>{{ loan.interest_rate }}</td>
+        <td>{{ loan.amount_paid }}</td>
+        <td>{{ loan.number_of_payments }}</td>
+        <td>{{ loan.end_date }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% else %}
+  <p>No auto loans found.</p>
+{% endif %}
+
+<h3>Personal Loans</h3>
+{% if personal_loans %}
+  <table>
+    <thead>
+      <tr>
+        <th>Loan ID</th>
+        <th>Loan Purpose</th>
+        <th>Loan Amount</th>
+        <th>Start Date</th>
+        <th>Interest Rate</th>
+        <th>Amount Paid</th>
+        <th>Number of Payments</th>
+        <th>End Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for loan in personal_loans %}
+      <tr>
+        <td>{{ loan.loan_id }}</td>
+        <td>{{ loan.loan_purpose }}</td>
+        <td>{{ loan.loan_amount }}</td>
+        <td>{{ loan.start_date }}</td>
+        <td>{{ loan.interest_rate }}</td>
+        <td>{{ loan.amount_paid }}</td>
+        <td>{{ loan.number_of_payments }}</td>
+        <td>{{ loan.end_date }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% else %}
+  <p>No personal loans found.</p>
+{% endif %}
+
+<h3>Mortgage Loans</h3>
+{% if mortgage_loans %}
+  <table>
+    <thead>
+      <tr>
+        <th>Mortgage ID</th>
+        <th>House Address</th>
+        <th>Start Date</th>
+        <th>Loan Amount</th>
+        <th>Number of Payments</th>
+        <th>Interest Rate</th>
+        <th>Amount Paid</th>
+        <th>End Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for loan in mortgage_loans %}
+      <tr>
+        <td>{{ loan.mortgage_id }}</td>
+        <td>{{ loan.house_address }}</td>
+        <td>{{ loan.start_date }}</td>
+        <td>{{ loan.loan_amount }}</td>
+        <td>{{ loan.number_of_payments }}</td>
+        <td>{{ loan.interest_rate }}</td>
+        <td>{{ loan.amount_paid }}</td>
+        <td>{{ loan.end_date }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% else %}
+  <p>No mortgage loans found.</p>
+{% endif %}
+{% endblock %}

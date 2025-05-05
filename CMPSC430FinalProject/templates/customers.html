@@ -1,0 +1,52 @@
+{% extends "layout.html" %}
+{% block content %}
+<h2>Customers</h2>
+<form method="get" action="{{ url_for('customers_route') }}">
+  <label for="search_column">Search By:</label>
+  <select name="search_column" id="search_column">
+    <option value="all" {% if search_column == 'all' %}selected{% endif %}>All</option>
+    <option value="customer_id" {% if search_column == 'customer_id' %}selected{% endif %}>Customer ID</option>
+    <option value="firstname" {% if search_column == 'firstname' %}selected{% endif %}>First Name</option>
+    <option value="lastname" {% if search_column == 'lastname' %}selected{% endif %}>Last Name</option>
+    <option value="dob" {% if search_column == 'dob' %}selected{% endif %}>DOB</option>
+    <option value="house_address" {% if search_column == 'house_address' %}selected{% endif %}>Address</option>
+    <option value="phone_number" {% if search_column == 'phone_number' %}selected{% endif %}>Phone Number</option>
+    <option value="email" {% if search_column == 'email' %}selected{% endif %}>Email</option>
+  </select>
+  <input type="text" name="search_value" placeholder="Search customers" value="{{ search_value or '' }}">
+  <button type="submit">Search</button>
+</form>
+
+<a href="{{ url_for('add_customer_route') }}">Add New Customer</a>
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>DOB</th>
+      <th>Address</th>
+      <th>Phone</th>
+      <th>Email</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for customer in customers %}
+    <tr>
+      <td>{{ customer.customer_id }}</td>
+      <td>{{ customer.firstname }}</td>
+      <td>{{ customer.lastname }}</td>
+      <td>{{ customer.dob }}</td>
+      <td>{{ customer.house_address }}</td>
+      <td>{{ customer.phone_number }}</td>
+      <td>{{ customer.email }}</td>
+      <td>
+        <a href="{{ url_for('edit_customer_route', customer_id=customer.customer_id) }}">Edit</a> |
+        <a href="{{ url_for('delete_customer_route', customer_id=customer.customer_id) }}" onclick="return confirm('Are you sure?')">Delete</a>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

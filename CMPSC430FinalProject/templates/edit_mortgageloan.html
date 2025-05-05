@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+{% block content %}
+<h2>Edit Mortgage Loan</h2>
+<form method="post" action="{{ url_for('edit_mortgageloan_route', mortgage_id=loan.mortgage_id) }}">
+  <label>House Address:</label><br>
+  <input type="text" name="house_address" value="{{ loan.house_address }}" required><br>
+  <label>Start Date:</label><br>
+  <input type="text" name="start_date" value="{{ loan.start_date }}" required><br>
+  <label>Loan Amount:</label><br>
+  <input type="text" name="loan_amount" value="{{ loan.loan_amount }}" required><br>
+  <label>Number of Payments:</label><br>
+  <input type="text" name="number_of_payments" value="{{ loan.number_of_payments }}" required><br>
+  <label>Interest Rate:</label><br>
+  <input type="text" name="interest_rate" value="{{ loan.interest_rate }}" required><br>
+  <label>Amount Paid:</label><br>
+  <input type="text" name="amount_paid" value="{{ loan.amount_paid }}" required><br>
+  <label>End Date:</label><br>
+  <input type="text" name="end_date" value="{{ loan.end_date }}" required><br>
+  <label>Select Customer:</label><br>
+  <select name="customer_id" required>
+    {% for customer in customers %}
+      <option value="{{ customer.customer_id }}" {% if customer.customer_id == loan.customer_id %}selected{% endif %}>
+         {{ customer.firstname }} {{ customer.lastname }}
+      </option>
+    {% endfor %}
+  </select><br>
+  <button type="submit">Update Mortgage Loan</button>
+</form>
+{% endblock %}
